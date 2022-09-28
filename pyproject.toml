@@ -10,6 +10,13 @@ repository = "https://github.com/python-poetry/poetry"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+uvicorn = "^0.18.3"
+fastapi = "^0.85.0"
+FastAPI-SQLAlchemy = "^0.2.1"
+pydantic = "^1.10.2"
+alembic = "^1.8.1"
+python-dotenv = "^0.21.0"
+psycopg2 = "^2.9.3"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^2.20.0"
