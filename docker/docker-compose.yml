@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 
 services:
   db:
@@ -25,4 +25,14 @@ services:
 
   app:
     container_name: fastapi-app
-    build: .
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      args:
+        - ENV_STATE=${ENV_STATE}
+        - POETRY_VERSION=${POETRY_VERSION}
+    image: fastapi-tier2:v0.1
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

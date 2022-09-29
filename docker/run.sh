@@ -74,9 +74,19 @@ function kill_docker_containers() {
 : '
 This function can be used to delete dangling images.
 '
-function kill_docker_containers() {
+function remove_docker_dangling_images() {
+    # shellcheck disable=SC2046
+    docker container rm $(docker ps -a -q)
     # shellcheck disable=SC2046
     docker image rm $(docker images --filter "dangling=true" -q)
+}
+
+: '
+This function builds the docker image app using docker-compose and the Dockerfile
+stored in .
+'
+function build_app_using_docker_compose() {
+    docker-compose -f docker/docker-compose.yml --env-file .env build --no-cache
 }
 
 : '
@@ -84,7 +94,7 @@ This function starts all the needed services for the application to run
 using docker-compose.
 '
 function start_services_using_docker_compose() {
-    docker-compose --env-file ../.env --project-name fastapi-ltier2 up
+    docker-compose -f docker/docker-compose.yml --env-file .env --project-name fastapi-ltier2 up
 }
 
 # ------------------------------------------------------- main ------------------------------------------------------- #
