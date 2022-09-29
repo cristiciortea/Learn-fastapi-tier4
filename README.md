@@ -4,5 +4,5 @@ SQLAlchemy + Alembic to manage migrations, PostgreSQL + PGAdmin  all wrapped dep
 
 ### Useful commands
 `docker-compose up` - application goes up
-``
+` ./docker/run.sh` - run the docker build for the fastapi app
 ``

@@ -26,13 +26,3 @@ services:
   app:
     container_name: fastapi-app
     build: .
-    networks:
-      - host1
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-
-  networks:
-    host1:
-      driver: bridge
