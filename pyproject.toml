@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "daskalos"
+name = "refteca"
 version = "0.0.1"
 description = "Project for learning fastapi, services and to build a custom app able to be modified when starting a new project"
 license = "MIT"

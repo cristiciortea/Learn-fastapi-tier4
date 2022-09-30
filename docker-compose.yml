@@ -5,12 +5,14 @@ services:
     container_name: postgresql_db
     image: postgres:14.5
     restart: always
-    ports:
-      - "5432:5432"
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
 
   pgadmin:
     container_name: pgadmin
@@ -18,21 +20,29 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+    env_file:
+      - .env
     ports:
       - "5050:80"
     depends_on:
       - db
 
-  app:
-    container_name: fastapi-app
+  api:
+    container_name: fastapi-ltier2
     build:
-      context: ../
+      context: .
       dockerfile: docker/Dockerfile
       args:
         - ENV_STATE=${ENV_STATE}
         - POETRY_VERSION=${POETRY_VERSION}
     image: fastapi-tier2:v0.1
+    restart: always
+    volumes:  # needed only for development purposes to sync up the code between . and /app
+      - ./:/app
+    env_file:
+      - .env
     ports:
       - "8000:8000"
     depends_on:
       - db
+    command: bash -c "uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload"

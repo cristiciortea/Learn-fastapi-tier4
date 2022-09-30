@@ -23,14 +23,14 @@ RUN pip install "poetry==${POETRY_VERSION}"
 WORKDIR /app
 
 # Copy only requirements to cache them in docker layer
-COPY "poetry.lock" "pyproject.toml" "poetry.toml" /app/
+COPY "poetry.lock" "pyproject.toml" /app/
 
 # Project initialization.
 # poetry tries to create a virtualenv, we do not need it in docker. It is already isolated.
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction $(test "${ENV_STATE}" == "prod" && echo "--no-dev")
+RUN poetry config virtualenvs.create false && \
+    poetry install --no-interaction $(test "${ENV_STATE}" == "prod" && echo "--no-dev")
 
-# Creating folders, and files for a project
+# Creating folders, and files for project
 COPY . /app/
 
 # Expose the application port
