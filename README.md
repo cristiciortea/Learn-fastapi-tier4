@@ -1,5 +1,6 @@
-API Development with FastAPI, SQLAlchemy, Alembic, PostgreSQL, Uvicorn and Docker. In this tutorial we take a first look at building an API with FastAPI building an API using FastAPI with Uvicorn (Get and Post Data),
-SQLAlchemy + Alembic to manage migrations, PostgreSQL + PGAdmin  all wrapped deployed in Docker/Docker-Compose.
+API Development with FastAPI, GraphQL, SQLAlchemy, Alembic, PostgreSQL, Uvicorn and Docker.
+In this tutorial we take a first look at building an API with FastAPI and GraphQL. We build an API that will allow posting, mutations and queries.
+SQLAlchemy + Alembic is used to manage migrations, PostgreSQL + PGAdmin  all wrapped deployed in Docker/Docker-Compose.
 
 ---
 ### Docker services commands
@@ -7,10 +8,10 @@ Build the docker image for the fastapi backend application:\
 `docker-compose build --no-cache`
 
 Start only the api:\
-`docker-compose --project-name fastapi-ltier2 up api`
+`docker-compose --project-name fastapi-ltier3 up api`
 
 Start all the application services:\
-`docker-compose --project-name fastapi-ltier2 up`
+`docker-compose --project-name fastapi-ltier3 up`
 
 ---
 ### Alembic migrations
@@ -20,11 +21,11 @@ Command for alembic initialization:\
 To do the 'make migration', changes or revisions:\
 `docker compose exec api /bin/bash -c "alembic revision --autogenerate -m 'my message'"` \
 **_or_**\
-`docker exec -it fastapi-ltier2 /bin/bash -c "alembic revision --autogenerate -m 'my message'"`
+`docker exec -it fastapi-ltier3 /bin/bash -c "alembic revision --autogenerate -m 'my message'"`
 
 To migrate the new changes/revisions:\
 `docker-compose exec api /bin/bash -c "alembic upgrade head"`\
-`docker exec -it fastapi-ltier2 /bin/bash -c "alembic upgrade head"`
+`docker exec -it fastapi-ltier3 /bin/bash -c "alembic upgrade head"`
 
 ---
 ### Other useful docker commands

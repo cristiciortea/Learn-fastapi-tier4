@@ -28,14 +28,14 @@ services:
       - db
 
   api:
-    container_name: fastapi-ltier2
+    container_name: fastapi-ltier3
     build:
       context: .
       dockerfile: docker/Dockerfile
       args:
         - ENV_STATE=${ENV_STATE}
         - POETRY_VERSION=${POETRY_VERSION}
-    image: fastapi-tier2:v0.1
+    image: fastapi-tier3:v0.1
     restart: always
     volumes:  # needed only for development purposes to sync up the code between . and /app
       - ./:/app

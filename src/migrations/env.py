@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
-from src.models.library_models import metadata
+from src.models.blog_models import Base
 
 # Define environment variables for customization of alembic
 BASE_DIR = pathlib.Path(__file__).absolute().parent.parent.parent
@@ -29,7 +29,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = metadata
+target_metadata = Base.metadata
 
 
 # other values from the config, defined by the needs of env.py,
@@ -69,6 +69,7 @@ def run_migrations_online() -> None:
     and associate a connection with the context.
 
     """
+    config.set_section_option("alembic", "sqlalchemy.url", os.environ["DATABASE_URL"])
     connectable = engine_from_config(
         config.get_section(config.config_ini_section),
         prefix="sqlalchemy.",
