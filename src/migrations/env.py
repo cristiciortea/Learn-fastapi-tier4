@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
-from src.models.blog_models import Base
+from src.models.library_models import Base
 
 # Define environment variables for customization of alembic
 BASE_DIR = pathlib.Path(__file__).absolute().parent.parent.parent

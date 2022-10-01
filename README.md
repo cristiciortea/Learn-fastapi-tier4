@@ -25,6 +25,7 @@ To do the 'make migration', changes or revisions:\
 
 To migrate the new changes/revisions:\
 `docker-compose exec api /bin/bash -c "alembic upgrade head"`\
+**_or_**\
 `docker exec -it fastapi-ltier3 /bin/bash -c "alembic upgrade head"`
 
 ---
